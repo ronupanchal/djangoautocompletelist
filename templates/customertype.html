@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block body %}
+ <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table mr-1"></i>
+                                Display CustomerType
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Customer type</th>
+                                          
+                                                 <th>Edit</th>
+                                                    <th>Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Customer type</th>
+                                                
+                                                 <th>Edit</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                        {% for customertype in customertypes %}
+                                            <tr>
+                                                <td>{{ customertype.id }}</td>
+                                                <td>{{ customertype.type }}</td>
+                      
+                                                <td><a href="{% url 'leadsource:customertype_update' customertype.id  %}">Edit</a></td>
+                                                <td><a href="{% url 'leadsource:customertype_delete' customertype.id  %}" onclick="return confirm('Are you sure to delete this record?');">Delete</a></td>
+                                            </tr>
+                                           {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+{% endblock %}
+
+
+
+

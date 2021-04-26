@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block body %}
+ <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table mr-1"></i>
+                                Display LeadSource
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>LeadSource Name</th>
+                                                <th>Thumnail</th>
+                                                <th>Logo</th>
+                                                 <th>Edit</th>
+                                                    <th>Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Thumnail</th>
+                                                <th>Logo</th>
+                                                 <th>Edit</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                        {% for leadsource in leadsources %}
+
+
+                                            <tr>
+                                                <td>{{ leadsource.id }}</td>
+                                                <td>{{ leadsource.name }}</td>
+                                                <td><img src="{{ leadsource.thumbnail.url|default_if_none:'#' }}" class="img-fluid img-thumbnail" class="rounded float-left" alt="{{ leadsource.thumbnail }}" /></td>
+                                                <td><img src="{{ leadsource.logo.url|default_if_none:'#' }}" height="150" width="150" class="rounded float-left" alt="{{ leadsource.logo }}" /></td>
+                                                <td><a href="{% url 'leadsource:leadsource_update' leadsource.id  %}">Edit</a></td>
+                                                <td><a href="{% url 'leadsource:leadsource_delete' leadsource.id  %}" onclick="return confirm('Are you sure to delete this record?');">Delete</a></td>
+                                            </tr>
+                                           {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+{% endblock %}
+
+
+
+
